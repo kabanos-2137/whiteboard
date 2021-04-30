@@ -1,0 +1,62 @@
+$darkBodyPrimary: #222222;
+$darkBodySecondary: #000000;
+$darkBodyFont: #ffffff;
+$lightBodyPrimary: #888888;
+$lightBodySecondary: #ffffff;
+$lightBodyFont: #000000;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+body{
+  background-color: $darkBodyPrimary;
+  color: $darkBodySecondary;
+  font-style: bold;
+  font-family: 'Roboto Mono', monospace;
+  letter-spacing: -2px;
+}
+
+nav{
+  height: 100px;
+  background-color: $darkBodySecondary;
+  color: $darkBodyFont;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+nav > p{
+  font-size: 2rem;
+  margin-top: 24px;
+  margin-left: 0.5%;
+  float: left;
+  margin-right: 24px;
+}
+
+.navbutton{
+  height: 100%;
+  width: 15%;
+  max-width: 200px;
+  min-width: 55px;
+  text-align: center;
+  height: 100%;
+}
+
+i{
+  display: block;
+  margin-top: 20px;
+  font-size: 2rem;
+}
+
+.navbutton > span{
+  opacity: 0;
+  margin-right: 200px;
+  letter-spacing: 1px;
+  transition: margin-right 0.5s, opacity 0.5s;
+}
+
+.navbutton:hover > span{
+  opacity: 1;
+  margin-right: 0px;
+}
