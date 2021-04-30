@@ -1,24 +1,23 @@
 $darkBodyPrimary: #222222;
 $darkBodySecondary: #000000;
-$darkBodyFont: #ffffff;
+$darkBodyFontPrimary: #ffffff;
+$darkBodyFontSecondary: #888888;
 $lightBodyPrimary: #888888;
 $lightBodySecondary: #ffffff;
-$lightBodyFont: #000000;
+$lightBodyFontPrimary: #000000;
+$lightBodyFontSecondary: #222222;
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,600;1,700&display=swap');
 
 body{
-  background-color: $darkBodyPrimary;
-  color: $darkBodySecondary;
   font-style: bold;
   font-family: 'Roboto Mono', monospace;
   letter-spacing: -2px;
+  height: 1000px;
 }
 
 nav{
   height: 100px;
-  background-color: $darkBodySecondary;
-  color: $darkBodyFont;
   position: fixed;
   top: 0;
   left: 0;
@@ -59,4 +58,44 @@ i{
 .navbutton:hover > span{
   opacity: 1;
   margin-right: 0px;
+}
+
+.dark, .light{
+  transition: background-color 0.35s, color 0.35s;
+}
+
+body{
+  &.dark{
+    background-color: $darkBodyPrimary;
+    color: $darkBodyFontSecondary;
+  }
+
+  &.light{
+    background-color: $lightBodyPrimary;
+    color: $lightBodyFontSecondary;
+  }
+}
+
+nav{
+  &.dark{
+    background-color: $darkBodySecondary;
+    color: $darkBodyFontPrimary;
+  }
+
+  &.light{
+    background-color: $lightBodySecondary;
+    color: $lightBodyFontPrimary;
+  }
+}
+
+.navLink:link, .navLink:visited{
+  &.dark{
+    color: $darkBodyFontPrimary;
+    text-decoration: none;
+  }
+
+  &.light{
+    color: $lightBodyFontPrimary;
+    text-decoration: none;
+  }
 }

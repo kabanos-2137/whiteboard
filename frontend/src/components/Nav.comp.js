@@ -36,8 +36,13 @@ export default class Nav extends Component {
   }
 
   render() {
+    if(!document.body.classList.contains(this.state.theme)){
+      document.body.classList.remove('dark')
+      document.body.classList.remove('light')
+      document.body.classList.add(this.state.theme)
+    }
     return(
-      <nav>
+      <nav className={this.state.theme}>
         <Logo/>
         <NavButton styled={{float: 'left'}} type='home' theme={this.state.theme}/>
         <NavButton styled={{float: 'left'}} type='app' theme={this.state.theme}/>

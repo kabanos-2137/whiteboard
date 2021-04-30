@@ -1,16 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,600;1,700&display=swap");
 body {
-  background-color: #222222;
-  color: #000000;
   font-style: bold;
   font-family: 'Roboto Mono', monospace;
   letter-spacing: -2px;
+  height: 1000px;
 }
 
 nav {
   height: 100px;
-  background-color: #000000;
-  color: #ffffff;
   position: fixed;
   top: 0;
   left: 0;
@@ -45,7 +42,6 @@ i {
   opacity: 0;
   margin-right: 200px;
   letter-spacing: 1px;
-  -webkit-transition: margin-right 0.5s, opacity 0.5s;
   transition: margin-right 0.5s, opacity 0.5s;
 }
 
@@ -53,4 +49,37 @@ i {
   opacity: 1;
   margin-right: 0px;
 }
-/*# sourceMappingURL=style.css.map */
+
+.dark, .light {
+  transition: background-color 0.35s, color 0.35s;
+}
+
+body.dark {
+  background-color: #222222;
+  color: #888888;
+}
+
+body.light {
+  background-color: #888888;
+  color: #222222;
+}
+
+nav.dark {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+nav.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.navLink:link.dark, .navLink:visited.dark {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.navLink:link.light, .navLink:visited.light {
+  color: #000000;
+  text-decoration: none;
+}

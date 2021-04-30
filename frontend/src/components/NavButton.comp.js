@@ -36,7 +36,7 @@ export default class NavButton extends Component{
 
     if(this.props.type === 'home'){
       return(
-        <Link to={'/'}>
+        <Link to={'/'} className={'navLink ' + this.props.theme}>
           <div className={'navbutton ' + this.props.theme} style={this.props.styled}>
             <i className="icon-home"></i>
             <span>Home</span>
@@ -52,7 +52,7 @@ export default class NavButton extends Component{
       )
     }else if(this.props.type === 'account'){
       return(
-        <Link to={'/account/login'}>
+        <Link to={'/account/login'} className={'navLink ' + this.props.theme}>
           <div className={'navbutton ' + this.props.theme} style={this.props.styled}>
             <i className="icon-user"></i>
             <span>Account</span>
