@@ -44,7 +44,6 @@ app.post('/api/set_theme', function (req, res) {
   var theme = req.body.theme;
   var username = req.body.username;
   var password = req.body.password;
-  console.log(req);
   con.query('UPDATE theme SET theme = ? WHERE id = (SELECT id FROM users WHERE username = ? AND password = ?)', [theme, username, password], function (err, result) {
     if (err) throw err;
     res.send('Success!');
