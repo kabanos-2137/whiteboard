@@ -7,21 +7,17 @@ import { ReactSession } from 'react-client-session'
 export default class App extends Component {
   render(){
     ReactSession.setStoreType('localStorage')
-    ReactSession.set('username', 'Admin')
-    ReactSession.set('password', 'AdminPass')
     return(
-      <div>
-        <BrowserRouter>
-          <Switch>  
-            <Route exact path='/'>
-              <Home></Home>
-            </Route>
-            <Route exact path='/account/login'>
-              <Login></Login>
-            </Route>
-          </Switch>
-        </BrowserRouter>
-      </div>
+      <BrowserRouter>
+        <Switch>  
+          <Route exact path='/'>
+            <Home></Home>
+          </Route>
+          <Route exact path='/account/login'>
+            <Login></Login>
+          </Route>
+        </Switch>
+      </BrowserRouter>
     )
   }
 }

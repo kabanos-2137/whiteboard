@@ -49,6 +49,20 @@ app.post('/api/set_theme', function (req, res) {
     res.send('Success!');
   });
 });
+app.post('/api/login', function (req, res) {
+  var username = req.body.username;
+  var password = req.body.password;
+  console.log(username, password);
+  con.query('SELECT id FROM users WHERE username = ? AND password = ?', [username, password], function (err, result) {
+    if (err) throw err;
+
+    if (result[0] == undefined) {
+      res.send(false);
+    } else {
+      res.send(true);
+    }
+  });
+});
 app.listen(port, function () {
   console.log("Listening on port ".concat(port));
 });

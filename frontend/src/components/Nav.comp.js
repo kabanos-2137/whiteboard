@@ -20,7 +20,10 @@ export default class Nav extends Component {
       })
     }else{
       if(doesSesVarExist('username') && doesSesVarExist('password')){
-        axios.post('/api/get_theme').then(response => {
+        axios.post('/api/get_theme', {
+          username: ReactSession.get('username'),
+          password: ReactSession.get('password')
+        }).then(response => {
           ReactSession.set('theme', response.data.theme)
           this.setState({
             theme: response.data.theme

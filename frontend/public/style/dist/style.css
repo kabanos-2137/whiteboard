@@ -50,6 +50,10 @@ i {
   margin-right: 0px;
 }
 
+#loginform {
+  margin-top: 125px;
+}
+
 .dark, .light {
   transition: background-color 0.35s, color 0.35s;
 }

@@ -48,6 +48,20 @@ app.post('/api/set_theme', (req, res) => {
   })
 })
 
+app.post('/api/login', (req, res) => {
+  var username = req.body.username;
+  var password = req.body.password;
+  console.log(username, password)
+  con.query('SELECT id FROM users WHERE username = ? AND password = ?', [username, password], (err, result) => {
+    if(err) throw err;
+    if(result[0] == undefined){
+      res.send(false);
+    }else{
+      res.send(true);
+    }
+  })
+})
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
