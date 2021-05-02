@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios';
 import { ReactSession } from 'react-client-session'
 import doesSesVarExist from '../doesSesVarExist'
@@ -48,20 +49,24 @@ export default class LoginForm extends Component {
         if(response.data){
           ReactSession.set('username', document.getElementById('username').value)
           ReactSession.set('password', document.getElementById('password').value)
+          console.log('a')
+          return <Redirect to='/account/user' />
         }
       })
     }
 
     const onCreateAccount = (event) => {
-      
+      console.log('a')
     }
 
     return(
-      <div id='loginform' onKeyUp={onSubmit} className={this.state.theme}>
-        <input type="text" id='username' placeholder={'username'} className={this.state.theme}></input>
-        <input type="password" id='password' placeholder={'password'} className={this.state.theme}></input>
-        <div id='submit' onClick={onSubmit} className={this.state.theme}> <p> submit </p> </div>
-        <div id='create_account' onClick={onCreateAccount} className={this.state.theme}> <p> create account </p> </div>
+      <div id='loginform' className={this.state.theme}>
+        <label for='username'>Username</label>
+        <input type="text" id='username' className={this.state.theme}  onKeyUp={onSubmit}></input>
+        <label for='password'>Password</label>
+        <input type="password" id='password' className={this.state.theme} onKeyUp={onSubmit}></input>
+        <div id='submit' onClick={onSubmit} className={this.state.theme}> <p> login </p> </div>
+        <div id='create_account' className={this.state.theme}> <p> You don't have an account? <u onClick={onCreateAccount}>sign up here</u> </p> </div>
       </div>
     )
   }

@@ -1,31 +1,24 @@
 $darkBodyPrimary: #222222;
-$darkBodySecondary: #000000;
-$darkBodyTertiary: #333333;
-$darkBodyFontPrimary: #ffffff;
-$darkBodyFontSecondary: #888888;
+$darkBodySecondary: #3C3C3C;
+$darkBodyTertiary: #565656;
+
+$darkBodyFontPrimary: #888888;
+$darkBodyFontSecondary: #6F6F6F;
+
 $lightBodyPrimary: #888888;
-$lightBodySecondary: #ffffff;
-$lightBodyTertiary: #bbbbbb;
-$lightBodyFontPrimary: #000000;
-$lightBodyFontSecondary: #222222;
+$lightBodySecondary: #6F6F6F;
+$lightBodyTertiary: #898989;
+
+$lightBodyFontPrimary: #222222;
+$lightBodyFontSecondary: #3C3C3C;
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,600;1,700&display=swap');
-
-@keyframes dark-light_input {
-  from { background-color: $darkBodyPrimary; }
-  to { background-color: $lightBodyPrimary; }
-}
-
-@keyframes light-dark_input {
-  from { background-color: $lightBodyPrimary; }
-  to { background-color: $darkBodyPrimary; }
-}
 
 body{
   font-style: bold;
   font-family: 'Roboto Mono', monospace;
   letter-spacing: -2px;
-  height: 1000px;
+  height: 900px;
 }
 
 nav{
@@ -79,40 +72,28 @@ i{
   min-width: 250px;
   margin-left: auto;
   margin-right: auto;
-  border: 2px solid black;
-  border-radius: 25px;
 }
 
 #username{
   margin-top: 15px !important;
 }
 
-#submit, #create_account{
-  width: 40% !important;
-  float: left;
+#submit{
+  width: 50% !important;
   font-size: 1rem !important;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
   p{
     height: auto;
-    width: auto;
-    margin: 0;
-    margin-top: 5.5%;
+    width: auto;    
+    padding: 5.5%;
     margin-left: auto;
     margin-right: auto;
   }
-
-  &#submit{
-    margin-left: 6% !important;
-    margin-right: 3% !important;
-  }
-
-  &#create_account{
-    margin-left: 3% !important;
-    margin-right: 6% !important;
-  }
 }
 
-#username, #password, #submit, #create_account{
+#username, #password, #submit{
   margin-top: 10px;
   margin-bottom: 10px;
   width: 85%;
@@ -120,16 +101,29 @@ i{
   margin-left: auto;
   margin-right: auto;
   border-radius: 25px;
-  border: black 2px solid;
   display: block;
   transition: border-radius 0.5s, opacity 0.5s;
   outline: none;
   opacity: 1;
   font-size: 1.5rem;
+  border: none;
   &:hover, &:focus{
     border-radius: 20px;
     opacity: 0.75;
   }
+}
+
+#create_account{
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#loginform > label{
+  width: 100%;
+  text-align: center;
+  display: block;
 }
 
 .dark, .light{
@@ -172,26 +166,18 @@ nav{
   }
 }
 
-#loginform{
+#username, #password, #submit{
   &.dark{
-    background-color: $darkBodyTertiary;
+    background-color: $darkBodySecondary;
+    color: $darkBodyFontPrimary;
   }
 
   &.light{
-    background-color: $lightBodyTertiary;
+    background-color: $lightBodySecondary;
+    color: $lightBodyFontPrimary;
   }
 }
 
-#username, #password, #submit, #create_account{
-  &.dark{
-    background-color: $darkBodyPrimary;
-    animation-name: light-dark_input;
-    animation-duration: 0.35s;
-  }
-
-  &.light{
-    background-color: $lightBodyPrimary;
-    animation-name: dark-light_input;
-    animation-duration: 0.35s;
-  }
+::placeholder{
+  color: black;
 }
