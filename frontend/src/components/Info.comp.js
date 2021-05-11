@@ -9,7 +9,7 @@ export default class Info extends Component {
     super();
     this.state = {
       theme: 'dark',
-      profpic: ''
+      profpic: '../profpic/default.png'
     }
   }
 

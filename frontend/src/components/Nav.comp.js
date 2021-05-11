@@ -16,7 +16,7 @@ export default class Nav extends Component {
   componentDidMount = () => {
     if(doesSesVarExist('theme')){
       this.setState({
-        theme: ReactSession.get('theme')
+        theme: ReactSession.get('theme'),
       })
     }else{
       if(doesSesVarExist('username') && doesSesVarExist('password')){
@@ -39,6 +39,14 @@ export default class Nav extends Component {
   }
 
   render() {
+    window.addEventListener('resize', () => {
+      if(window.innerWidth <= 558){
+        document.getElementById('logo').innerText = '.w'
+      }else if(window.innerWidth > 558){
+        document.getElementById('logo').innerText = '.whiteboard'
+      }
+    })
+
     if(!document.body.classList.contains(this.state.theme)){
       document.body.classList.remove('dark')
       document.body.classList.remove('light')
