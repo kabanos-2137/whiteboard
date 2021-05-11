@@ -2,6 +2,8 @@ import { Component } from 'react'
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from './components/Home.comp'
 import Login from './components/Login.comp'
+import User from './components/User.comp'
+import Open from './components/Open.transition'
 import { ReactSession } from 'react-client-session'
 
 export default class App extends Component {
@@ -13,8 +15,14 @@ export default class App extends Component {
           <Route exact path='/'>
             <Home></Home>
           </Route>
+          <Route exact path='/account/open'>
+            <Open></Open>
+          </Route>
           <Route exact path='/account/login'>
             <Login></Login>
+          </Route>
+          <Route exact path='/account/user'>
+            <User></User>
           </Route>
         </Switch>
       </BrowserRouter>

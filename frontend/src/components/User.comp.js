@@ -1,13 +1,13 @@
 import { Component } from 'react'
 import Nav from './Nav.comp'
-import LoginForm from './LoginForm.comp'
+import Info from './Info.comp'
 
-export default class Login extends Component {
+export default class User extends Component {
   render() {
     return(
       <div>
         <Nav />
-        <LoginForm />
+        <Info />
       </div>
     )
   }

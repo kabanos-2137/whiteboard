@@ -52,7 +52,7 @@ export default class NavButton extends Component{
       )
     }else if(this.props.type === 'account'){
       return(
-        <Link to={'/account/login'} className={'navLink ' + this.props.theme}>
+        <Link to={'/account/open'} className={'navLink ' + this.props.theme}>
           <div className={'navbutton ' + this.props.theme} style={this.props.styled}>
             <i className="icon-user"></i>
             <span>Account</span>
