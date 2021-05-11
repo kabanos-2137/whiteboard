@@ -49,7 +49,7 @@ export default class LoginForm extends Component {
         }else{
           document.getElementById('submit').style = ``;
           document.getElementById('submit').style = `
-            animation: incorrectanimation 1s;
+            animation: incorrectanimation 0.75s;
           `;
           setTimeout(() => {
             document.getElementById('submit').style = ``;

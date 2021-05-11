@@ -78,6 +78,12 @@ app.post('/api/get_profpic', function (req, res) {
     }
   });
 });
+app.post('/api/articles', function (req, res) {
+  con.query('SELECT * FROM mainpagearticles', function (err, result) {
+    if (err) throw err;
+    res.send(result.reverse());
+  });
+});
 app.listen(port, function () {
   console.log("Listening on port ".concat(port));
 });

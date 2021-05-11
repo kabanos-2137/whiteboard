@@ -148,6 +148,18 @@ i {
   float: right;
 }
 
+#articles {
+  margin-top: 125px;
+  padding-bottom: 125px;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+#articles p {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
 .dark, .light {
   transition: background-color 0.35s, color 0.35s;
 }

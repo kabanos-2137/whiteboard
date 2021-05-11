@@ -78,6 +78,13 @@ app.post('/api/get_profpic', (req, res) => {
   })
 })
 
+app.post('/api/articles', (req, res) => {
+  con.query('SELECT * FROM mainpagearticles', (err, result) => {
+    if (err) throw err;
+    res.send(result.reverse())
+  })
+})
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });

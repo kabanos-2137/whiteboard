@@ -5,8 +5,10 @@ import Articles from './Articles.comp'
 export default class Home extends Component {
   render() {
     return(
-      <Nav/>
-      <Articles/>
+      <div>
+        <Nav/>
+        <Articles/>
+      </div>
     )
   }
 }
