@@ -44,8 +44,7 @@ export default class LoginForm extends Component {
         if(response.data){
           ReactSession.set('username', document.getElementById('username').value)
           ReactSession.set('password', document.getElementById('password').value)
-          console.log('a')
-          window.location.href = 'http://localhost:3000/account/user'
+          window.location.href = './user'
         }else{
           document.getElementById('submit').style = ``;
           document.getElementById('submit').style = `

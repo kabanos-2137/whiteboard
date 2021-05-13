@@ -4,6 +4,8 @@ import Home from './components/Home.comp'
 import Login from './components/Login.comp'
 import User from './components/User.comp'
 import Open from './components/Open.transition'
+import ChooseWhtbrd from './components/ChooseWhtbrd.comp'
+import NotLoggedIn from './components/NotLoggedIn.comp'
 import { ReactSession } from 'react-client-session'
 
 export default class App extends Component {
@@ -23,6 +25,12 @@ export default class App extends Component {
           </Route>
           <Route exact path='/account/user'>
             <User></User>
+          </Route>
+          <Route exact path='/app/open'>
+            <ChooseWhtbrd></ChooseWhtbrd>
+          </Route>
+          <Route exact path='/app/not_logged_in'>
+            <NotLoggedIn></NotLoggedIn>
           </Route>
         </Switch>
       </BrowserRouter>

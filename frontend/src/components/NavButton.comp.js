@@ -45,10 +45,12 @@ export default class NavButton extends Component{
       )
     }else if(this.props.type === 'app'){
       return(
-        <div className={'navbutton ' + this.props.theme} style={this.props.styled}>
-          <i className="icon-th"></i>
-          <span>App</span>
-        </div>
+        <Link to={'/app/open'} className={'navLink ' + this.props.theme}>
+          <div className={'navbutton ' + this.props.theme} style={this.props.styled}>
+            <i className="icon-th"></i>
+            <span>App</span>
+          </div>
+        </Link>
       )
     }else if(this.props.type === 'account'){
       return(

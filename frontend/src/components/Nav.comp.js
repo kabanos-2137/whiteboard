@@ -46,6 +46,13 @@ export default class Nav extends Component {
         document.getElementById('logo').innerText = '.whiteboard'
       }
     })
+    window.addEventListener('ready', () => {
+      if(window.innerWidth <= 558){
+        document.getElementById('logo').innerText = '.w'
+      }else if(window.innerWidth > 558){
+        document.getElementById('logo').innerText = '.whiteboard'
+      }
+    })
 
     if(!document.body.classList.contains(this.state.theme)){
       document.body.classList.remove('dark')

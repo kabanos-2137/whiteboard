@@ -167,6 +167,23 @@ i {
   font-weight: bold;
 }
 
+#not_logged {
+  margin-top: 125px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 85%;
+}
+
+#not_logged p#text {
+  text-align: center;
+  font-size: 4rem;
+}
+
+#not_logged p#small_text {
+  text-align: center;
+  font-size: 2rem;
+}
+
 .dark, .light {
   transition: background-color 0.35s, color 0.35s;
 }
