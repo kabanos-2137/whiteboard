@@ -84,6 +84,18 @@ app.post('/api/articles', function (req, res) {
     res.send(result.reverse());
   });
 });
+app.post('/api/get_whiteboards', function (req, res) {
+  con.query('SELECT * FROM dots_themes WHERE id = (SELECT id FROM users WHERE BINARY username = BINARY ? AND BINARY password = BINARY ?)', [req.body.username, req.body.password], function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+app.post('/api/delete_whtbrd', function (req, res) {
+  con.query('DELETE FROM dots_themes WHERE ID = (SELECT id FROM users WHERE BINARY username = BINARY ? AND BINARY password = BINARY ?) AND ID_OF_WHITEBOARD = ?', [req.body.username, req.body.password, req.body.whtbrdid], function (err, result) {
+    if (err) throw err;
+    res.end();
+  });
+});
 app.listen(port, function () {
   console.log("Listening on port ".concat(port));
 });

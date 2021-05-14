@@ -85,6 +85,20 @@ app.post('/api/articles', (req, res) => {
   })
 })
 
+app.post('/api/get_whiteboards', (req, res) => {
+  con.query('SELECT * FROM dots_themes WHERE id = (SELECT id FROM users WHERE BINARY username = BINARY ? AND BINARY password = BINARY ?)', [req.body.username, req.body.password], (err, result) => {
+    if(err) throw err;
+    res.send(result)
+  })
+})
+
+app.post('/api/delete_whtbrd', (req, res) => {
+  con.query('DELETE FROM dots_themes WHERE ID = (SELECT id FROM users WHERE BINARY username = BINARY ? AND BINARY password = BINARY ?) AND ID_OF_WHITEBOARD = ?', [req.body.username, req.body.password, req.body.whtbrdid], (err, result) => {
+    if (err) throw err;
+    res.end()
+  })
+})
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });

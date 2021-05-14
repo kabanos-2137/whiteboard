@@ -11,6 +11,15 @@
   }
 }
 
+@keyframes deletewhtbrd {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 body {
   font-style: bold;
   font-family: 'Roboto Mono', monospace;
@@ -184,6 +193,65 @@ i {
   font-size: 2rem;
 }
 
+#whiteboards {
+  margin-top: 125px;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.whiteboardElement {
+  height: 300px;
+  width: 100%;
+}
+
+.whiteboardElement img {
+  border-radius: 25px;
+  float: left;
+}
+
+.whiteboardElement p#name {
+  margin-left: 7.5%;
+  width: auto;
+  font-size: 2rem;
+  float: left;
+}
+
+.whiteboardElement span#whtbrdid {
+  margin-left: 7.5%;
+  font-size: 0.75rem;
+  float: left;
+  opacity: 0.75;
+  margin-top: 50px;
+}
+
+.whiteboardElement img.dots {
+  height: 65px;
+  width: 65px;
+  float: right;
+}
+
+.whiteboardElement div.button {
+  height: 25px;
+  width: 100px;
+  float: right;
+  padding: 10px;
+  text-align: center;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 25px;
+  transition: opacity 0.5s;
+}
+
+.whiteboardElement div.button:hover {
+  opacity: 0.5;
+}
+
+.deletewhtbrd {
+  animation: deletewhtbrd 0.5s;
+  opacity: 0;
+}
+
 .dark, .light {
   transition: background-color 0.35s, color 0.35s;
 }
@@ -238,6 +306,16 @@ nav.light {
 }
 
 #userinfo div.light {
+  background-color: #6F6F6F;
+  color: #222222;
+}
+
+.whiteboardElement > .button.dark {
+  background-color: #3C3C3C;
+  color: #888888;
+}
+
+.whiteboardElement > .button.light {
   background-color: #6F6F6F;
   color: #222222;
 }
