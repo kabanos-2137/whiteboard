@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import CryptoJS from 'crypto-js'
 import { ReactSession } from 'react-client-session';
 import NavButton from './NavButton.comp'
 import Logo from './Logo.comp'
 import doesSesVarExist from '../doesSesVarExist'
+
+require('dotenv').config()
 
 export default class Nav extends Component {
   constructor() {
@@ -14,15 +17,19 @@ export default class Nav extends Component {
   }
 
   componentDidMount = () => {
+    if(window.innerWidth <= 558){
+      document.getElementById('logo').innerText = '.w'
+    }else if(window.innerWidth > 558){
+      document.getElementById('logo').innerText = '.whiteboard'
+    }
     if(doesSesVarExist('theme')){
       this.setState({
         theme: ReactSession.get('theme'),
       })
     }else{
-      if(doesSesVarExist('username') && doesSesVarExist('password')){
+      if(doesSesVarExist('id')){
         axios.post('/api/get_theme', {
-          username: ReactSession.get('username'),
-          password: ReactSession.get('password')
+          id: ReactSession.get('id'),
         }).then(response => {
           ReactSession.set('theme', response.data.theme)
           this.setState({
@@ -40,13 +47,6 @@ export default class Nav extends Component {
 
   render() {
     window.addEventListener('resize', () => {
-      if(window.innerWidth <= 558){
-        document.getElementById('logo').innerText = '.w'
-      }else if(window.innerWidth > 558){
-        document.getElementById('logo').innerText = '.whiteboard'
-      }
-    })
-    window.addEventListener('ready', () => {
       if(window.innerWidth <= 558){
         document.getElementById('logo').innerText = '.w'
       }else if(window.innerWidth > 558){

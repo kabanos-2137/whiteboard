@@ -4,17 +4,20 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios';
 import { ReactSession } from 'react-client-session';
 
+require('dotenv').config();
+
 export default class Info extends Component {
   constructor() {
     super();
     this.state = {
       theme: 'dark',
-      profpic: '../profpic/default.png'
+      profpic: '../profpic/default.png',
+      username: ''
     }
   }
 
   componentDidMount() {
-    if(!doesSesVarExist('username') || !doesSesVarExist('password')){
+    if(!doesSesVarExist('id')){
       window.location.href = 'http://localhost:3000/account/login'
     }
     if(doesSesVarExist('theme')){
@@ -22,10 +25,9 @@ export default class Info extends Component {
         theme: ReactSession.get('theme')
       })
     }else{
-      if(doesSesVarExist('username') && doesSesVarExist('password')){
+      if(doesSesVarExist('id')){
         axios.post('/api/get_theme', {
-          username: ReactSession.get('username'),
-          password: ReactSession.get('password')
+          id: ReactSession.get('id'),
         }).then(response => {
           ReactSession.set('theme', response.data.theme)
           this.setState({
@@ -41,11 +43,18 @@ export default class Info extends Component {
     }
 
     axios.post('/api/get_profpic', {
-      username: ReactSession.get('username'),
-      password: ReactSession.get('password')
+      id: ReactSession.get('id'),
     }).then(response => {
       this.setState({ 
         profpic: response.data
+      })
+    })
+
+    axios.post('/api/get_username', {
+      id: ReactSession.get('id'),
+    }).then(response => {
+      this.setState({ 
+        username: response.data
       })
     })
   }
@@ -58,15 +67,14 @@ export default class Info extends Component {
     }
 
     const onLogoutClick = () => {
-      ReactSession.set('username', undefined)
-      ReactSession.set('password', undefined)
+      ReactSession.set('id', undefined)
       window.location.href = 'http://localhost:3000/account/login'
     }
 
     return(
       <div id="userinfo">
         <img src={'../' + this.state.profpic}></img>
-        <p>{ReactSession.get('username')}</p>
+        <p>{this.state.username}</p>
         <div class={this.state.theme} onClick={() => onLogoutClick()}>Log out</div>
       </div>
     )

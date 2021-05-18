@@ -1,33 +1,62 @@
 import { Component } from 'react'
+import CryptoJS from 'crypto-js'
 import { ReactSession } from 'react-client-session';
-import DoesSesVarExist from '../doesSesVarExist'
+import doesSesVarExist from '../doesSesVarExist'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import Nav from './Nav.comp'
 import ChooseWhtbrdElement from './ChooseWhtbrdElement.comp'
+
+require('dotenv').config();
 
 export default class ChooseWhtbrd extends Component {
   constructor (){
     super();
     this.state = {
-      whiteboards: []
+      whiteboards: [],
+      theme: 'dark'
     }
   }
 
   componentDidMount() {
-    if(!DoesSesVarExist('username') && !DoesSesVarExist('password')){
+    if(!doesSesVarExist('id')){
       window.location.href = './not_logged_in'
     }
     axios.post('/api/get_whiteboards', {
-      username: ReactSession.get('username'),
-      password: ReactSession.get('password')
+      id: ReactSession.get('id'),
     }).then(response => {
       let whiteboards = response.data
       this.setState({
         whiteboards: whiteboards
       })
     })
+    if(doesSesVarExist('theme')){
+      this.setState({
+        theme: ReactSession.get('theme'),
+      })
+    }else{
+      if(doesSesVarExist('id')){
+        axios.post('/api/get_theme', {
+          id: ReactSession.get('id'),
+        }).then(response => {
+          ReactSession.set('theme', response.data.theme)
+          this.setState({
+            theme: response.data.theme
+          })
+        })
+      }else{
+        ReactSession.set('theme', 'dark')
+        this.setState({
+          theme: ReactSession.get('theme')
+        })
+      }
+    }
   }
   render(){
+    const onAdd = () => {
+      window.location.href = './add'
+    }
+
     return(
       <div>
         <Nav></Nav>
@@ -43,6 +72,7 @@ export default class ChooseWhtbrd extends Component {
               dot3={whiteboard.DOT_3}
               dot4={whiteboard.DOT_4}></ChooseWhtbrdElement>
           ))}
+          <div className={'button ' + this.state.theme} onClick={() => onAdd()}>Add whiteboard</div>
         </div>
       </div>
     )

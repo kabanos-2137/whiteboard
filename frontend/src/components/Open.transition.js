@@ -4,7 +4,7 @@ import doesSesVarExist from '../doesSesVarExist';
 
 export default class User extends Component {
   render() {
-    if(doesSesVarExist('username') && doesSesVarExist('password')){
+    if(doesSesVarExist('id')){
       return <Redirect to='/account/user'></Redirect>
     }else{
       return <Redirect to='/account/login'></Redirect>

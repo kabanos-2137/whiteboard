@@ -4,6 +4,8 @@ import { ReactSession } from 'react-client-session'
 import axios from 'axios'
 import { Redirect } from 'react-router';
 
+require('dotenv').config();
+
 export default class LoginForm extends Component {
   constructor() {
     super();
@@ -19,10 +21,9 @@ export default class LoginForm extends Component {
         theme: ReactSession.get('theme'),
       })
     }else{
-      if(doesSesVarExist('username') && doesSesVarExist('password')){
+      if(doesSesVarExist('id')){
         axios.post('/api/get_theme', {
-          username: ReactSession.get('username'),
-          password: ReactSession.get('password')
+          id: ReactSession.get('id'),
         }).then(response => {
           ReactSession.set('theme', response.data.theme)
           this.setState({
@@ -71,8 +72,7 @@ export default class LoginForm extends Component {
     const onDelete = (id) => {
       axios.post('/api/delete_whtbrd', {
         whtbrdid: id,
-        username: ReactSession.get('username'),
-        password: ReactSession.get('password')
+        id: ReactSession.get('id'),
       }).then(response => {
         let div = document.getElementById(id)
         div.classList.add('deletewhtbrd')

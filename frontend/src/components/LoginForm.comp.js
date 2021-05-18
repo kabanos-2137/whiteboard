@@ -1,8 +1,10 @@
 import { Component } from 'react'
 import { Redirect, useHistory } from 'react-router-dom'
-import axios from 'axios';
+import axios from 'axios'
 import { ReactSession } from 'react-client-session'
 import doesSesVarExist from '../doesSesVarExist'
+
+require('dotenv').config();
 
 export default class LoginForm extends Component {
   constructor() {
@@ -13,7 +15,7 @@ export default class LoginForm extends Component {
   }
 
   componentDidMount = () => {
-    if(doesSesVarExist('username') && doesSesVarExist('password')){
+    if(doesSesVarExist('id')){
       return <Redirect to='/account/user'></Redirect>
     }
     if(doesSesVarExist('theme')){
@@ -21,7 +23,7 @@ export default class LoginForm extends Component {
         theme: ReactSession.get('theme')
       })
     }else{
-      if(doesSesVarExist('username') && doesSesVarExist('password')){
+      if(doesSesVarExist('id')){
         return <Redirect to='/account/user'></Redirect>
       }else{
         ReactSession.set('theme', 'dark')
@@ -41,9 +43,8 @@ export default class LoginForm extends Component {
         username: document.getElementById('username').value,
         password: document.getElementById('password').value
       }).then(response => {
-        if(response.data){
-          ReactSession.set('username', document.getElementById('username').value)
-          ReactSession.set('password', document.getElementById('password').value)
+        if(response.data.valid){
+          ReactSession.set('id', response.data.id)
           window.location.href = './user'
         }else{
           document.getElementById('submit').style = ``;
@@ -61,7 +62,7 @@ export default class LoginForm extends Component {
       console.log('a')
     }
 
-    if(doesSesVarExist('username') && doesSesVarExist('password')){
+    if(doesSesVarExist('id')){
       return <Redirect to='/account/user'></Redirect>
     }else{
       return(

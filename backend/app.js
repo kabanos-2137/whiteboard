@@ -28,9 +28,8 @@ con.connect((err) => {
 })
 
 app.post('/api/get_theme', (req, res) => {
-  var username = req.body.username;
-  var password = req.body.password;
-  con.query('SELECT theme FROM theme WHERE id = (SELECT id FROM users WHERE BINARY username = BINARY ? AND BINARY password = BINARY ?)', [username, password], (err, result) => {
+  var id = req.body.id;
+  con.query('SELECT theme FROM theme WHERE id = ?', [id], (err, result) => {
     if (err) throw err;
     if(result[0] != undefined){
       res.send(result[0].theme)
@@ -40,9 +39,8 @@ app.post('/api/get_theme', (req, res) => {
 
 app.post('/api/set_theme', (req, res) => {
   var theme = req.body.theme;
-  var username = req.body.username;
-  var password = req.body.password;
-  con.query('UPDATE theme SET theme = ? WHERE id = (SELECT id FROM users WHERE BINARY username = BINARY ? AND password = ?)', [theme, username, password], (err, result) => {
+  var id = req.body.id;
+  con.query('UPDATE theme SET theme = ? WHERE id = ?', [theme, id], (err, result) => {
     if(err) throw err;
     res.send('Success!')
   })
@@ -57,24 +55,37 @@ app.post('/api/login', (req, res) => {
     console.log(result[0])
     if(result[0] == undefined){
       console.log(false)
-      res.send(false);
+      res.send({
+        valid: false
+      });
     }else{
       console.log(true)
-      res.send(true);
+      res.send({
+        valid: true,
+        id: result[0].id
+      });
     }
   })
 })
 
 app.post('/api/get_profpic', (req, res) => {
-  let username =  req.body.username;
-  let password =  req.body.password;
-
-  con.query('SELECT location FROM profpic WHERE id = (SELECT id FROM users WHERE BINARY username = BINARY ? AND BINARY password = BINARY ?);', [username, password], (err, result) => {
+  con.query('SELECT location FROM profpic WHERE id = ?;', [req.body.id], (err, result) => {
     if (err) throw err;
     if (result[0] != undefined){
       console.log('./' + result[0].location)
       res.send('./' + result[0].location);
     }
+    res.end();
+  })
+})
+
+app.post('/api/get_username', (req, res) => {
+  con.query('SELECT username FROM users WHERE id = ?;', [req.body.id], (err, result) => {
+    if (err) throw err;
+    if (result[0] != undefined){
+      res.send(result[0].username);
+    }
+    res.end();
   })
 })
 
@@ -86,17 +97,21 @@ app.post('/api/articles', (req, res) => {
 })
 
 app.post('/api/get_whiteboards', (req, res) => {
-  con.query('SELECT * FROM dots_themes WHERE id = (SELECT id FROM users WHERE BINARY username = BINARY ? AND BINARY password = BINARY ?)', [req.body.username, req.body.password], (err, result) => {
+  con.query('SELECT * FROM dots_themes WHERE id = ?', [req.body.id], (err, result) => {
     if(err) throw err;
     res.send(result)
   })
 })
 
 app.post('/api/delete_whtbrd', (req, res) => {
-  con.query('DELETE FROM dots_themes WHERE ID = (SELECT id FROM users WHERE BINARY username = BINARY ? AND BINARY password = BINARY ?) AND ID_OF_WHITEBOARD = ?', [req.body.username, req.body.password, req.body.whtbrdid], (err, result) => {
+  con.query('DELETE FROM dots_themes WHERE ID = ? AND ID_OF_WHITEBOARD = ?', [req.body.id, req.body.whtbrdid], (err, result) => {
     if (err) throw err;
     res.end()
   })
+})
+
+app.post('/api/create_whiteboard', (req, res) => {
+  
 })
 
 app.listen(port, () => {

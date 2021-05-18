@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import CryptoJS from 'crypto-js'
 import { ReactSession } from 'react-client-session';
 import { Link } from 'react-router-dom'
 import doesSesVarExist from '../doesSesVarExist'
+
+require('dotenv').config()
 
 export default class NavButton extends Component{
   render() {
@@ -18,16 +21,15 @@ export default class NavButton extends Component{
           ReactSession.set('theme', 'dark')
         }
       })
-      if(doesSesVarExist('username') && doesSesVarExist('password')){
+      if(doesSesVarExist('id')){
         console.log({
           theme: ReactSession.get('theme'),
-          username: ReactSession.get("username"),
-          password: ReactSession.get("password")
+          username: ReactSession.get('username'),
+          password: ReactSession.get('password')
         })
         axios.post('/api/set_theme', {
           theme: ReactSession.get('theme'),
-          username: ReactSession.get("username"),
-          password: ReactSession.get("password")
+          id: ReactSession.get('id'),
         }).then(response => {
           console.log(response.data)
         })
