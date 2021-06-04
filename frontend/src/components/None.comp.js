@@ -77,7 +77,7 @@ export default class None extends Component {
   render(){
     if(this.props.current === true){
       return(
-        <div className="window current">
+        <div className="window current" id={this.props.dot_number + '_whtbrd'}>
           <NoneButton type="draw"></NoneButton>
           <NoneButton type="calc"></NoneButton>
           <NoneButton type="snak"></NoneButton>
@@ -86,7 +86,7 @@ export default class None extends Component {
       )
     }else{
       return(
-        <div className="window not-current">
+        <div className="window not-current" id={this.props.dot_number + '_whtbrd'}>
           <NoneButton type="draw"></NoneButton>
           <NoneButton type="calc"></NoneButton>
           <NoneButton type="snak"></NoneButton>

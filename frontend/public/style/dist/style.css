@@ -22,7 +22,6 @@ body {
   font-style: bold;
   font-family: "Roboto Mono", monospace;
   letter-spacing: -2px;
-  height: 900px;
 }
 
 nav {
@@ -294,9 +293,19 @@ i {
   height: 800px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 125px;
+  margin-top: 102.5px;
   background-color: white;
   border-radius: 25px;
+}
+.whiteboard img.dots {
+  height: 45px;
+  width: 45px;
+  float: right;
+  transition: height 0.35s, width 0.35s;
+}
+.whiteboard img.dots.current_dot {
+  height: 65px;
+  width: 65px;
 }
 
 .current {
