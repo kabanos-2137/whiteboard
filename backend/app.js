@@ -123,6 +123,19 @@ app.post('/api/create_whiteboard', (req, res) => {
   }
 })
 
+app.post('/api/get_dots', (req, res) => {
+  let whiteboardId = req.body.whiteboardId //id of whiteboard
+  let id = req.body.id // user's id
+
+  let query = `SELECT DOT_1, DOT_2, DOT_3, DOT_4, INSIDE_DOT_1, INSIDE_DOT_2, INSIDE_DOT_3, INSIDE_DOT_4 FROM dots_themes WHERE ID = ? AND BINARY ID_OF_WHITEBOARD = BINARY ?`
+  // Get info 'bout dots from db
+
+  con.query(query, [id, whiteboardId], (err, result) => { // execute the query
+    if(err) throw err;
+    res.send(result[0])
+  })
+})
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });

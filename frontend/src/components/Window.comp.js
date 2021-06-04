@@ -15,11 +15,16 @@ export default class Window extends Component {
   }
 
   render(){
-    console.log(this.props.dot_number)
-    if(this.props.dot_number == undefined){
+    console.log(this.props.dot_inside)
+    if(this.props.dot_inside === 'NONE'){
       console.log('a')
       return (
-        <None current={this.props.current}></None>
+        <None current={this.props.current} dot_number={this.props.dot_number}></None>
+      )
+    }else{
+      console.log('b')
+      return (
+        <None current={this.props.current} dot_number={this.props.dot_number}></None>
       )
     }
   }

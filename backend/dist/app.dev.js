@@ -126,6 +126,19 @@ app.post('/api/create_whiteboard', function (req, res) {
     });
   }
 });
+app.post('/api/get_dots', function (req, res) {
+  var whiteboardId = req.body.whiteboardId; //id of whiteboard
+
+  var id = req.body.id; // user's id
+
+  var query = "SELECT DOT_1, DOT_2, DOT_3, DOT_4, INSIDE_DOT_1, INSIDE_DOT_2, INSIDE_DOT_3, INSIDE_DOT_4 FROM dots_themes WHERE ID = ? AND BINARY ID_OF_WHITEBOARD = BINARY ?"; // Get info 'bout dots from db
+
+  con.query(query, [id, whiteboardId], function (err, result) {
+    // execute the query
+    if (err) throw err;
+    res.send(result[0]);
+  });
+});
 app.listen(port, function () {
   console.log("Listening on port ".concat(port));
 });
