@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 
 var mysql = require('mysql');
 
+var Str = require('@supercharge/strings');
+
 require('dotenv').config();
 
 var app = express();
@@ -110,7 +112,20 @@ app.post('/api/delete_whtbrd', function (req, res) {
     res.end();
   });
 });
-app.post('/api/create_whiteboard', function (req, res) {});
+app.post('/api/create_whiteboard', function (req, res) {
+  console.log(req.body);
+
+  if (req.body.name != undefined) {
+    con.query('INSERT INTO dots_themes (ID, ID_OF_WHITEBOARD, DOT_1, DOT_2, DOT_3, DOT_4, INSIDE_DOT_1, INSIDE_DOT_2, INSIDE_DOT_3, INSIDE_DOT_4, WHITEBOARD_NAME, PROFPIC) VALUES (?, ?, "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", ?, ?)', [req.body.id, Str.random(64), req.body.name, '../whtbrdprofpic/default.png'], function (err, result) {
+      if (err) {
+        res.end();
+        throw err;
+      }
+
+      res.end();
+    });
+  }
+});
 app.listen(port, function () {
   console.log("Listening on port ".concat(port));
 });

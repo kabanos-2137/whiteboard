@@ -12,7 +12,7 @@ class NoneButton extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     if(doesSesVarExist('theme')){
       this.setState({
         theme: ReactSession.get('theme'),

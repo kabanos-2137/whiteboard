@@ -7,6 +7,7 @@ import Open from './components/Open.transition'
 import ChooseWhtbrd from './components/ChooseWhtbrd.comp'
 import NotLoggedIn from './components/NotLoggedIn.comp'
 import AddWhiteboard from './components/AddWhiteboard.comp'
+import WhiteboardPage from './components/WhiteboardPage.comp'
 import { ReactSession } from 'react-client-session'
 
 export default class App extends Component {
@@ -36,6 +37,7 @@ export default class App extends Component {
           <Route exact path='/app/add'>
             <AddWhiteboard></AddWhiteboard>
           </Route>
+          <Route exact path='/whtbrd/:id' component={WhiteboardPage}></Route>
         </Switch>
       </BrowserRouter>
     )

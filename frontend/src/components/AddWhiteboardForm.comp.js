@@ -53,7 +53,7 @@ export default class AddWhiteboardForm extends Component {
       name: this.state.text,
       id: ReactSession.get('id'),
     }).then(response => {
-
+      
     })
   }
 
@@ -73,7 +73,7 @@ export default class AddWhiteboardForm extends Component {
       <form action="" id="addWhiteboard" onSubmit={this.onSubmit}>
         <label>Whiteboard name</label>
         <input onKeyUp={this.onChangeText} id="name" name="name" className={this.state.theme} type="text" required></input>
-        <button onClick={this.onClick} className={this.state.theme} id="addButton"><p>Submit</p></button>
+        <button onClick={this.onClick} className={this.state.theme + ' button'} id="addButton"><p>Submit</p></button>
       </form>
     )
   }

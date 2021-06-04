@@ -84,7 +84,7 @@ i {
   margin-top: 15px !important;
 }
 
-#submit {
+#submit, #addButton {
   width: 50% !important;
   font-size: 1rem !important;
   text-align: center;
@@ -92,7 +92,7 @@ i {
   margin-right: auto;
 }
 
-#submit p {
+#submit p, #addButton p {
   height: auto;
   width: auto;
   padding: 5.5%;
@@ -100,7 +100,7 @@ i {
   margin-right: auto;
 }
 
-#username, #password, #submit {
+#username, #password, #submit, #addButton {
   margin-top: 10px;
   margin-bottom: 10px;
   width: 85%;
@@ -116,7 +116,7 @@ i {
   border: none;
 }
 
-#username:hover, #username:focus, #password:hover, #password:focus, #submit:hover, #submit:focus {
+#username:hover, #username:focus, #password:hover, #password:focus, #submit:hover, #submit:focus, #addButton:hover, #addButton:focus {
   border-radius: 20px;
   opacity: 0.75;
 }
@@ -221,7 +221,6 @@ i {
   margin-left: 7.5%;
   font-size: 0.75rem;
   float: left;
-  opacity: 0.75;
   margin-top: 50px;
 }
 
@@ -267,6 +266,14 @@ i {
   margin-right: auto;
 }
 
+#addWhiteboard label {
+  display: block;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
 #addWhiteboard input[type=text] {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -288,8 +295,63 @@ i {
   opacity: 0.75;
 }
 
-#addWhiteboard #submit {
-  width: 50% !important;
+#addWhiteboard button > p {
+  font-family: 'Roboto Mono', monospace;
+  padding: 0;
+  letter-spacing: -1px;
+  font-size: 0.95rem;
+  margin-top: 6.5px;
+}
+
+.not-current {
+  opacity: 0;
+  height: 0px;
+  width: 0px;
+}
+
+.whiteboard {
+  width: 1600px;
+  height: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 125px;
+  background-color: white;
+  border-radius: 25px;
+}
+
+.current {
+  height: 100%;
+  width: 100%;
+}
+
+.none-btn {
+  width: 25%;
+  float: left;
+  height: auto;
+  text-align: center;
+  padding-top: 21.7%;
+  padding-bottom: 25%;
+}
+
+.none-btn.none-draw {
+  border-radius: 22.5px 0px 0px 22.5px;
+}
+
+.none-btn.none-text {
+  border-radius: 0px 22.5px 22.5px 0px;
+}
+
+.none-btn p {
+  margin-top: 0px;
+  margin-bottom: -30px;
+  opacity: 0;
+  transition: margin-top 0.35s, margin-bottom 0.35s, opacity 0.35s;
+}
+
+.none-btn:hover > p {
+  margin-top: -30px;
+  margin-bottom: 0px;
+  opacity: 1;
 }
 
 .dark, .light {
@@ -376,6 +438,26 @@ nav.light {
 }
 
 #addWhiteboard > input[type=text].light {
+  background-color: #6F6F6F;
+  color: #222222;
+}
+
+.none-btn.dark {
+  background-color: #222222;
+  color: #6F6F6F;
+}
+
+.none-btn.light {
+  background-color: #888888;
+  color: #3C3C3C;
+}
+
+.none-btn:hover.dark {
+  background-color: #3C3C3C;
+  color: #888888;
+}
+
+.none-btn:hover.light {
   background-color: #6F6F6F;
   color: #222222;
 }

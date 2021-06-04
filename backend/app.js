@@ -2,6 +2,7 @@ const express = require('express');
 const cookieParser = require("cookie-parser");
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
+const Str = require('@supercharge/strings')
 
 require('dotenv').config();
 
@@ -111,7 +112,15 @@ app.post('/api/delete_whtbrd', (req, res) => {
 })
 
 app.post('/api/create_whiteboard', (req, res) => {
-  
+  console.log(req.body)
+  if(req.body.name != undefined){
+    con.query(
+      'INSERT INTO dots_themes (ID, ID_OF_WHITEBOARD, DOT_1, DOT_2, DOT_3, DOT_4, INSIDE_DOT_1, INSIDE_DOT_2, INSIDE_DOT_3, INSIDE_DOT_4, WHITEBOARD_NAME, PROFPIC) VALUES (?, ?, "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", ?, ?)'
+    , [req.body.id, Str.random(64), req.body.name, '../whtbrdprofpic/default.png'], (err, result) => {
+      if(err) { res.end(); throw err; }
+      res.end();
+    })
+  }
 })
 
 app.listen(port, () => {

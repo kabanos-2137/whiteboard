@@ -76,7 +76,7 @@ export default class LoginForm extends Component {
       }).then(response => {
         let div = document.getElementById(id)
         div.classList.add('deletewhtbrd')
-        setTimeout(() => div.parentNode.removeChild(div), 2000)
+        setTimeout(() => div.parentNode.removeChild(div), 500)
         
       })
     }
