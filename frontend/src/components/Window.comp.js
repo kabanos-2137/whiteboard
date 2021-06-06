@@ -16,11 +16,10 @@ export default class Window extends Component {
   }
 
   render(){
-    console.log(this.props.dot_inside)
     if(this.props.dot_inside === 'NONE'){
       console.log('a')
       return (
-        <None current={this.props.current} dot_number={this.props.dot_number}></None>
+        <None current={this.props.current} dot_number={this.props.dot_number} whtbrd_id={this.props.whtbrd_id}></None>
       )
     }else if(this.props.dot_inside === 'DRAW'){
       console.log('b')
@@ -30,7 +29,7 @@ export default class Window extends Component {
     }else{
       console.log('c')
       return (
-        <None current={this.props.current} dot_number={this.props.dot_number}></None>
+        <None current={this.props.current} dot_number={this.props.dot_number} whtbrd_id={this.props.whtbrd_id}></None>
       )
     }
   }

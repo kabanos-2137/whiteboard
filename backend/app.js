@@ -136,6 +136,21 @@ app.post('/api/get_dots', (req, res) => {
   })
 })
 
+app.post('/api/change_dot_theme', (req, res) => {
+  let user_id = req.body.id
+  let whtbrd_id = req.body.whtbrd_id
+  let dot_number = req.body.dot_number
+  let dot_target_type = req.body.dot_target_type
+  
+  let query = `UPDATE dots_themes SET DOT_${dot_number} = ? WHERE ID = ? AND BINARY ID_OF_WHITEBOARD = BINARY ?`
+
+  con.query(query, [dot_target_type, user_id, whtbrd_id], (err, result) => {
+    if(err) throw err;
+    console.log(result[0])
+    res.end();
+  })
+})
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });

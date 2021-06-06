@@ -139,6 +139,18 @@ app.post('/api/get_dots', function (req, res) {
     res.send(result[0]);
   });
 });
+app.post('/api/change_dot_theme', function (req, res) {
+  var user_id = req.body.id;
+  var whtbrd_id = req.body.whtbrd_id;
+  var dot_number = req.body.dot_number;
+  var dot_target_type = req.body.dot_target_type;
+  var query = "UPDATE dots_themes SET DOT_".concat(dot_number, " = ? WHERE ID = ? AND BINARY ID_OF_WHITEBOARD = BINARY ?");
+  con.query(query, [dot_target_type, user_id, whtbrd_id], function (err, result) {
+    if (err) throw err;
+    console.log(result[0]);
+    res.end();
+  });
+});
 app.listen(port, function () {
   console.log("Listening on port ".concat(port));
 });

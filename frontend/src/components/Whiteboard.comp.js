@@ -68,12 +68,13 @@ export default class WhiteboardPage extends Component {
     }else if(this.state.whtbrdData.DOT_4 == 'DRAW'){
       srcdot4 = '../dots/draw.png'
     }
+    console.log(srcdot1)
     return(
       <div className="whiteboard">
-        <Window id={this.props.id} dot_number={1} dot_inside={this.state.whtbrdData.DOT_1} current={true}></Window>
-        <Window id={this.props.id} dot_number={2} dot_inside={this.state.whtbrdData.DOT_2} current={false}></Window>
-        <Window id={this.props.id} dot_number={3} dot_inside={this.state.whtbrdData.DOT_3} current={false}></Window>
-        <Window id={this.props.id} dot_number={4} dot_inside={this.state.whtbrdData.DOT_4} current={false}></Window>
+        <Window id={this.props.id} dot_number={1} dot_inside={this.state.whtbrdData.DOT_1} current={true} whtbrd_id={this.props.id}></Window>
+        <Window id={this.props.id} dot_number={2} dot_inside={this.state.whtbrdData.DOT_2} current={false} whtbrd_id={this.props.id}></Window>
+        <Window id={this.props.id} dot_number={3} dot_inside={this.state.whtbrdData.DOT_3} current={false} whtbrd_id={this.props.id}></Window>
+        <Window id={this.props.id} dot_number={4} dot_inside={this.state.whtbrdData.DOT_4} current={false} whtbrd_id={this.props.id}></Window>
         <img className={'dots'} id={"dot_4"} src={srcdot4} onClick={() => this.onDotClick(4)}></img>
         <img className={'dots'} id={"dot_3"} src={srcdot3} onClick={() => this.onDotClick(3)}></img>
         <img className={'dots'} id={"dot_2"} src={srcdot2} onClick={() => this.onDotClick(2)}></img>
